@@ -23,10 +23,12 @@ public class DictionaryManagement {
             File inFile = new File("C:\\Users\\home\\IdeaProjects\\Dictionary\\src\\main\\java\\Dictionary.txt");
             FileReader fileReader = new FileReader(inFile);
             BufferedReader reader = new BufferedReader(fileReader);
-            Word w = new Word();
+
             String line = null;
             while ((line = reader.readLine()) != null) {
-                String[] empty = line.split("\\s");
+                Word w = new Word();
+                String[] empty = new String[2];
+                empty = line.split("\\s", 2);
                 w.setWordtarget(empty[0]);
                 w.setMean(empty[1]);
                 data.add(w);
@@ -45,6 +47,7 @@ public class DictionaryManagement {
         //insertFromCommandline(data);
         DictionaryManagement    dic = new DictionaryManagement();
         dic.insertFromFile();
+        System.out.println(data.get(0).getMean()+ "m");
         for(int i = 0; i < data.size(); i++){
             data.get(i).display();
         }
