@@ -1,4 +1,5 @@
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.Buffer;
@@ -6,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 public class DictionaryManagement {
     // nhap du lieu
-    public static ArrayList<Word> data = new ArrayList<Word>(100);
+    public static ArrayList<Word> data = new ArrayList<Word>();
 //    static void insertFromCommandline(Word[] data){
 //          Scanner sc = new Scanner(System.in);
 //          System.out.print("word: ");
@@ -19,10 +20,11 @@ public class DictionaryManagement {
 //    }
     public void insertFromFile(){
         try{
-            FileReader fileReader = new FileReader("Dictionary.txt");
+            File inFile = new File("C:\\Users\\home\\IdeaProjects\\Dictionary\\src\\main\\java\\Dictionary.txt");
+            FileReader fileReader = new FileReader(inFile);
             BufferedReader reader = new BufferedReader(fileReader);
             Word w = new Word();
-            String line = new String();
+            String line = null;
             while ((line = reader.readLine()) != null) {
                 String[] empty = line.split("\\s");
                 w.setWordtarget(empty[0]);
@@ -30,6 +32,7 @@ public class DictionaryManagement {
                 data.add(w);
             }
             reader.close();
+            fileReader.close();
         }
         catch(IOException e){
             e.printStackTrace();
